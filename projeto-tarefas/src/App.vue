@@ -13,8 +13,8 @@ export default {
 	data() {
 		return {
 			tasks: [
-				{name:  'Lavar louça', pendings: false},
-				{ name: 'Comprar fruta', pendings: true },
+				{name:  'Lavar louça', pending: false},
+				{ name: 'Comprar fruta', pending: true },
 			]
 		}
 	}
