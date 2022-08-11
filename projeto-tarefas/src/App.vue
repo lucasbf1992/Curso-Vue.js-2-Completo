@@ -16,10 +16,7 @@ export default {
 	components: { TaskGrid, NewTask, TaskProgress },
 	data() {
 		return {
-			tasks: [
-				{name:  'Lavar louça', pending: false},
-				{ name: 'Comprar fruta', pending: true },
-			]
+			tasks: []
 		}
 	},
 	computed: {
@@ -28,6 +25,14 @@ export default {
 			const done = this.tasks.filter(t => !t.pending).length
 
 			return Math.round(done / total * 100) || 0
+		}
+	},
+	watch: {
+		tasks: {
+			deep: true,
+			handler() {
+				localStorage.setItem('tasks', JSON.stringify(this.tasks))
+			}
 		}
 	},
 	methods: {
@@ -53,6 +58,18 @@ export default {
 			this.tasks[i].pending = ! this.tasks[i].pending
 		}
 	},
+	created() {
+		const json = localStorage.getItem('tasks')
+		const tasks = JSON.parse(json)
+		
+		if (Array.isArray(tasks)) {
+			this.tasks = tasks
+
+			return
+		}
+
+		this.tasks = []
+	}
 }
 </script>
 
