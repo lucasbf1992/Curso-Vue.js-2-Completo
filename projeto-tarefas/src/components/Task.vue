@@ -1,5 +1,8 @@
 <template>
-    <div class="task" :class="stateClass">
+    <div
+        @click="$emit('taskStateChanged', task)"
+        class="task" :class="stateClass">
+        <span class="close" @click="$emit('taskDeleted', task)">x</span>
         <p>
             {{ task.name }}
         </p>
@@ -27,7 +30,10 @@ export default {
 
 <style scoped>
 
+
+
 .task {
+    position: relative;
     box-sizing: border-box;
     width: 350px;
     height: 150px;
@@ -50,6 +56,27 @@ export default {
     border-left: 12px solid #4caf50;
     background-color: #4caf50;
     text-decoration: line-through;
+}
+
+.pending .close {
+    background-color: #b73229;
+}
+
+.done .close {
+    background-color: #0a8f08;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    height: 20px;
+    widows: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 </style>
