@@ -73,7 +73,7 @@ export default {
     font-size: 0.9rem;
     font-weight: 600;
     height: 20px;
-    widows: 20px;
+    width: 20px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
